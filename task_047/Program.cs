@@ -39,4 +39,3 @@ int lines = EnterNumber("Enter the number of lines");
 double [,] matrix = new double [columns, lines];
 FillMatrixWithRundomNumbers(matrix);
 PrintMatrix(matrix);
-
