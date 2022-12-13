@@ -4,14 +4,26 @@
 // 1 -3,3 8 -9,9
 // 8 7,8 -7,1 9
 
-void FillMatrixWithRundomNumbers(int [,] arr)
+void PrintMatrix(double[,] arr)
+{
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+            Console.Write("[" + arr[i, j] + "]");
+        }
+        System.Console.WriteLine();
+    }
+}
+
+void FillMatrixWithRundomNumbers(double [,] arr)
 {
     Random rand = new Random();
     for (int i = 0; i < arr.GetLength(0); i++)
     {
         for (int j = 0; j < arr.GetLength(1); j++)
         {
-            arr[i, j] = Math.Round(rand.NextDouble() * 10, 1);
+            arr[i, j] = Math.Round(rand.Next(-9, 10) + rand.NextDouble(), 1);
         }
     }
 }
@@ -25,3 +37,6 @@ int EnterNumber(string meseg)
 int columns = EnterNumber("Enter the number of columns");
 int lines = EnterNumber("Enter the number of lines");
 double [,] matrix = new double [columns, lines];
+FillMatrixWithRundomNumbers(matrix);
+PrintMatrix(matrix);
+
