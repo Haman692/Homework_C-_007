@@ -1,25 +1,19 @@
-﻿// Задача 50. Напишите программу, которая на вход принимает число, 
-// и возвращает позицию этого числа.
+﻿// Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, и возвращает значение этого элемента или же указание, что такого элемента нет.
 // Например, задан массив:
 // 1 4 7 2
 // 5 9 2 3
 // 8 4 2 4
 // 17 -> такого числа в массиве нет
-bool FindNumber(int[,] arr, int find)
+void FindNumber(string meseg, int[,] arr)
 {
-    bool flag = false;
-    for (int i = 0; i < arr.GetLength(0); i++)
-    {
-        for (int j = 0; j < arr.GetLength(1); j++)
-        {
-            if(arr[i, j] == find)
-            {
-                System.Console.WriteLine($"The number is on [{i+1}, {j+1}]");    
-                flag = true;  
-            }      
-        }
-    }
-    return flag;
+    System.Console.WriteLine(meseg);
+    string[] desiredNumber = Console.ReadLine().Split("; ");
+    int numberY = Convert.ToInt32(desiredNumber[0]);
+    int numberX = Convert.ToInt32(desiredNumber[1]);
+    if (numberX <= arr.GetLength(0) && numberY <= arr.GetLength(1))
+        System.Console.WriteLine("Number: " + arr[numberX - 1, numberY - 1]);
+    else
+        System.Console.WriteLine("Not suitable id");
 }
 
 void PrintMatrix(int[,] arr)
@@ -52,12 +46,9 @@ int EnterNumber(string meseg)
     return num;
 }
 
-int desiredNumber = EnterNumber("Enter the desired number");
 int columns = EnterNumber("Enter the number of columns");
 int lines = EnterNumber("Enter the number of lines");
 int[,] matrix = new int[columns, lines];
 FillMatrixRandomNumbers(matrix);
 PrintMatrix(matrix);
-bool found =FindNumber(matrix, desiredNumber);
-if(found == false)
-    System.Console.WriteLine("Number not found");
+FindNumber("Write the id of the number (example 1; 1)", matrix);
